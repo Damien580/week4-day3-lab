@@ -1,5 +1,8 @@
 const resBtn = document.querySelector('button')
+const list = document.querySelector('ul')
+
 const baseURL = `http://swapi.dev/api/`
+
 const clickStr = () =>{
     console.log("Button Clicked")
 }
@@ -16,11 +19,19 @@ const displayAlderaan = obj =>{
 }
 
 const displayPeople = arr  =>{
+    
     for (i = 0; i < arr.length; i++){
         axios.get(arr[i]).then(response =>{
             let peeps = response.data.name
             console.log(peeps)
+            // let { name } = response.data
+            
+            let listItem = document.createElement('li')
+            listItem.textContent = peeps
+
+            list.appendChild(listItem)
         })
+        .catch(err => {err})
     }
 }
 
